@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 .button {
     background-color: red;
     border: none;
@@ -5,17 +6,77 @@
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display; inline-block;
+    display: inline-block;
     font-size: 16px;
 }
 
-@font-face {
-    font-family: "Montserrat";
-    src: url("Montserrat-VariableFont_wght.ttf") format("ttf");
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 90%;
+    }
 }
 
-#p1 {
+@keyframes fadein {
+    0% { opacity: 0%; }
+    100% { opacity: 100%; }
+}
+
+.header {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-image: url("https://garden.spoonflower.com/c/13274063/p/f/m/eNOCxyAyG2ibVr98sq09_t7xx831y_eg6wqD7nijLkt2wYqr6SF1s94/Period%20Print.jpg");
+    height: 100px;
+    padding: 50px;
+    margin-top: 0px;
+    font-size: 100px;
+    color: whitesmoke;
+    font-weight: bold;
+    text-shadow:10px;
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+#heading {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 50px;
     font-weight: normal;
     font-style: normal;
+    text-align: center;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-name: fadein;
+    animation-fill-mode: backwards;
+}
+
+body {
+    background-color: rgba(255, 222, 223, 0.756);
+    animation-timing-function: cubic-bezier();
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" stroke="lightgray" fill="red" width="10px" height="10px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52"/></svg>'), default;
+}
+
+#names {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color:black;
+    position: absolute;
+    bottom: 10px;
+}
+
+#homebutton {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    position: absolute;
+    bottom: 10px;
+}
+
+#sometext {
+    background-color: black;
 }
