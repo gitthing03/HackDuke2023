@@ -1,2 +1,6 @@
 HackDuke2023 project!!! :)
-esther added something
+
+/ard/ - Arduino-related code
+/web/ - Website and server related code
+
+PULL BEFORE YOU PUSH!
