@@ -17,7 +17,7 @@ if (ser):
     ser.flush()
     content = ser.readline().decode('utf-8').strip()
     content = int(content)
-    print("sending")
+    print(f"sending: ${content}")
     # Send new input
-    requests.get(url = "http://127.0.0.1:8000/api/count", params = {'id':content})
+    requests.get(url = "http://127.0.0.1:8000/api/decrement", params = {'id':content})
     
