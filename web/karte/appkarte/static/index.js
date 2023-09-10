@@ -23,17 +23,17 @@ grayImg.src = gray;
 const {PinElement} = await google.maps.importLibrary("marker");
 const glyphSvgPinElementGreen = new PinElement({
   glyph: greenImg,
-  scale: 3.5
+  scale: 2
 });
 
 const glyphSvgPinElementYellow = new PinElement({
   glyph: yellowImg,
-  scale: 3.5
+  scale: 2
 });
 
 const glyphSvgPinElementGray = new PinElement({
   glyph: grayImg,
-  scale: 3.5
+  scale: 2
 });
 
 // Construct Google Maps view
@@ -83,7 +83,7 @@ initMap();
 // Each marker contains a div of the box's data
 function createContent(box) {
   if (box.stock > 10) return glyphSvgPinElementGreen.element;
-  if (box.stock > 5) return glyphSvgPinElementYellow.element;
+  if (box.stock > 0) return glyphSvgPinElementYellow.element;
   return glyphSvgPinElementGray.element;
 }
 
@@ -108,4 +108,4 @@ function updateAllBoxes() {
   });
 }
 // Update every box periodically
-setInterval(initMap, 15000);
+setInterval(initMap, 12500);
