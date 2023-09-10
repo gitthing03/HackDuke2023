@@ -19,7 +19,7 @@
 
     to {
         margin-left: 0%;
-        width: 90%;
+        width: 85%;
     }
 }
 
@@ -56,6 +56,7 @@
 }
 
 body {
+    height: 700px;
     background-color: rgba(255, 222, 223, 0.756);
     animation-timing-function: cubic-bezier();
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" stroke="lightgray" fill="red" width="10px" height="10px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52"/></svg>'), default;
@@ -74,9 +75,53 @@ body {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     font-size: 15px;
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
 }
 
-#sometext {
-    background-color: black;
+#box {
+    opacity: 50%;
+    border-radius: 25px;
+    background: white;
+    border-color: rgb(125, 5, 224);
+    border-style: solid;
+    border-width: medium;
+    padding: 20px;
+    width: 10em;
+    height: 2.5em;
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
+
+#box:hover {
+    opacity: 100%;
+}
+
+.curved-rectangle {
+    width: 200px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50px;
+    position: relative;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 100px; /* Vertically center text */
+    transform: skew(-20deg); /* Apply skew transformation */
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  /* Apply a shadow effect (optional) */
+  .curved-rectangle::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background: #34495e;
+    border-radius: 40px;
+    z-index: -1;
+  }
+  
