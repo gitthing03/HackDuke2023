@@ -1,8 +1,44 @@
 let map;
 
+const greenImg = document.createElement("img");
+const yellowImg = document.createElement("img");
+const grayImg = document.createElement("img");
+
+greenImg.src = green;
+// greenImg.style.width = "30%";
+// greenImg.style.height = "30%";
+// greenImg.style.marginLeft = "20rem";
+// greenImg.style.marginTop = "10rem";
+yellowImg.src = yellow;
+// yellowImg.style.width = "30%";
+// yellowImg.style.height = "30%";
+// yellowImg.style.marginLeft = "20rem";
+// yellowImg.style.marginTop = "10rem";
+grayImg.src = gray;
+// grayImg.style.width = "30%";
+// grayImg.style.height = "30%";
+// grayImg.style.marginLeft = "20rem";
+// grayImg.style.marginTop = "10rem";
+
+const {PinElement} = await google.maps.importLibrary("marker");
+const glyphSvgPinElementGreen = new PinElement({
+  glyph: greenImg,
+  scale: 3.5
+});
+
+const glyphSvgPinElementYellow = new PinElement({
+  glyph: yellowImg,
+  scale: 3.5
+});
+
+const glyphSvgPinElementGray = new PinElement({
+  glyph: grayImg,
+  scale: 3.5
+});
+
 // Construct Google Maps view
 async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
 
   map = new Map(document.getElementById("map"), {
     // Center at Penn
@@ -11,7 +47,10 @@ async function initMap() {
     mapId: '88f3fbf147f53b26'
   });
   // Import and create markers for boxes
-  const {AdvancedMarkerElement} = await google.maps.importLibrary("marker");
+  const {AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  const infoWindow = new InfoWindow();
+
   fetch("/api/getmarkers")
   .then(response => response.json())
   .then((data) =>  {
@@ -22,9 +61,18 @@ async function initMap() {
         title: data[box].title,
         content: createContent(data[box])
       });
-      newBox.addListener('click', ({domEvent, latLng}) => {
+      newBox.addListener("click", ({domEvent, latLng}) => {
         const {target} = domEvent;
-        // Handle event
+        infoWindow.close();
+        fetch(`/api/getcount/${data[box].id}`)
+        .then(response => response.json())
+        .then((data) =>  {
+          newBox.content = createContent(data);
+          infoWindow.setContent(`${data.title} - STOCK: ${data.stock} `);
+          infoWindow.open(newBox.map, newBox);
+        });
+        // infoWindow.setContent(`${data[box].title} - ${updateStock(data[box].id)} `);
+        // infoWindow.open(newBox.map, newBox);
       });
     }
   });
@@ -34,18 +82,18 @@ initMap();
 // Specifies the "content" field of each marker
 // Each marker contains a div of the box's data
 function createContent(box) {
-  const content = document.createElement("div");
-  content.innerHTML = `
-    <div id=${box.id}stock>${box.title} - ${box.stock}</div>`;
-  return content;
+  if (box.stock > 10) return glyphSvgPinElementGreen.element;
+  if (box.stock > 5) return glyphSvgPinElementYellow.element;
+  return glyphSvgPinElementGray.element;
 }
+
 
 // Update the stock number for a specific marker based on ID
 function updateStock(id) {
   fetch(`/api/getcount/${id}`)
   .then(response => response.json())
   .then((data) =>  {
-    document.getElementById(`${id}stock`).innerHTML = `${data["title"]} - ${data["stock"]}`;
+    return data.stock;
   });
 }
 
@@ -59,6 +107,5 @@ function updateAllBoxes() {
     }
   });
 }
-
 // Update every box periodically
-setInterval(updateAllBoxes, 3000);
+setInterval(initMap, 15000);

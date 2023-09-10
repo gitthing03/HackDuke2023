@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+.button {
+    background-color: red;
+    border: none;
+    color: aliceblue;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 85%;
+    }
+}
+
+@keyframes fadein {
+    0% { opacity: 0%; }
+    100% { opacity: 100%; }
+}
+
+.header {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-image: url("https://garden.spoonflower.com/c/13274063/p/f/m/eNOCxyAyG2ibVr98sq09_t7xx831y_eg6wqD7nijLkt2wYqr6SF1s94/Period%20Print.jpg");
+    height: 100px;
+    padding: 50px;
+    margin-top: 0px;
+    font-size: 3rem;
+    color: whitesmoke;
+    font-weight: bold;
+    text-shadow:10px;
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+
+#heading {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-name: fadein;
+    animation-fill-mode: backwards;
+}
+
+body {
+    height: 700px;
+    background-color: rgba(255, 222, 223, 0.756);
+    animation-timing-function: cubic-bezier();
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" stroke="lightgray" fill="red" width="10px" height="10px" viewBox="0 0 10.04 10.04"><circle cx="5.02" cy="5.02" r="4.52"/></svg>'), default;
+}
+
+#names {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    color:black;
+    position: absolute;
+    bottom: 10px;
+}
+
+#homebutton {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    position: absolute;
+    bottom: 0;
+}
+
+.infobox {
+    opacity: 50%;
+    border-radius: 25px;
+    background: white;
+    border-color: rgb(125, 5, 224);
+    border-style: solid;
+    border-width: medium;
+    padding: 20px;
+    width: 10em;
+    height: 2.5em;
+    font-size: 1em;
+    text-align: center;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+}
+
+.infobox:hover {
+    opacity: 100%;
+}
+
+.curved-rectangle {
+    width: 200px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50px;
+    position: relative;
+    text-align: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 100px; /* Vertically center text */
+    transform: skew(-20deg); /* Apply skew transformation */
+    overflow: hidden; /* Hide overflowing content */
+  }
+  
+  /* Apply a shadow effect (optional) */
+  .curved-rectangle::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    background: #34495e;
+    border-radius: 40px;
+    z-index: -1;
+  }
+  

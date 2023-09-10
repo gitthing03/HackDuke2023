@@ -18,7 +18,7 @@ def makeBox(request):
 def decrementCount(request):
     id = request.GET["id"]
     box = Box.objects.get(id=id)
-    box.stock -= 1
+    box.stock = max(box.stock - 1, 0)
     box.save()
     return HttpResponse(status=200)
 
@@ -28,6 +28,8 @@ def getCount(request, id):
     d = dict()
     d["stock"] = box.stock
     d["title"] = box.title
+    d["desc"] = box.desc
+    d["id"] = box.id
     return JsonResponse(d)
 
 # Return JSON of every box's ID, and their current stock
@@ -36,6 +38,8 @@ def getAll(request):
     for box in Box.objects.all():
         d[box.id] = dict()
         d[box.id]["stock"] = box.stock
+        d[box.id]["title"] = box.title
+        d[box.id]["desc"] = box.desc
     return JsonResponse(d)
 
 # Restock a box, hardcoded to be our only actual box
